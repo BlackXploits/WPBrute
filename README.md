@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ### Usage
   * Standard Mode:
 ```
-python wpbrute.py -s -t [TARGET] -u [USERNAME] -w [WORDLIST] [--timeout TIMEOUT VALUE]
+python wpbrute.py -s [-t TARGET] [-u USERNAME] [-w WORDLIST] [--timeout TIMEOUT VALUE]
 ```
   * xml-rpc Mode:
 ```
