@@ -23,4 +23,5 @@ python wpbrute.py -s -t [TARGET] -u [USERNAME] -w [WORDLIST] [--timeout TIMEOUT 
 ```
 
 ### Screenshot
-![wp-brute](https://user-images.githubusercontent.com/35635224/38136385-3c26dcb4-3448-11e8-80ca-c676ec02e2f1.png)
+
+![wp-brute](https://user-images.githubusercontent.com/35635224/38143418-abfa1174-346a-11e8-8a64-7b811531ebf8.png)
