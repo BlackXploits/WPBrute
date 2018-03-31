@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Author: BlackXploits
+# Special thank's to: stamparm (Miroslav Stampar)
+# PLEASE DON'T DELETE THIS COPYRGHT
 # --------------------------------------------
 
 import urllib
