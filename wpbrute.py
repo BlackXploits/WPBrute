@@ -123,7 +123,7 @@ def urlCMS(url,brutemode):
     if url[:8] != "https://" and url[:7] != "http://":
         print(g+'\n[*]'+w+' You must insert http:// or https:// procotol')
         os._exit(1)
-    # Page login
+    # Login Page WordPress
     if brutemode == "std":
        url = url+'/wp-login.php'
     else:
@@ -195,7 +195,7 @@ def connection(url,user,password,UA,timeout,brutemode):
               print(r+'[!] HTTP error, code: '+str(response.status))
               os._exit(1)
 
-           # Remove all blank and newline chars
+           # Menghapus semua karakter kosong & baris baru
            xmlcontent = content.replace(" ", "").replace("\n","")
 
            if not "faultCode" in xmlcontent:
@@ -267,12 +267,12 @@ commandList.add_argument('--timeout',
 
 options = commandList.parse_args()
 
-# Check bruteforce mode conflicts
+# Cek mode bruteforce conflict
 if options.standard and options.xml:
    print (y+"\n[*] Select standard [-S]"+w+"OR"+y+"xml-rpc [-X] bruteforce mode")
    sys.exit(1)
 
-# Check args
+# Check argument
 if not options.standard and not options.xml:
     print(banner)
     print
@@ -290,13 +290,12 @@ if options.standard:
 else:
    brtmd="xml"
 
-# args to vars
 url = options.target
 user = options.username
 wlfile = options.wordlist
 timeout = options.timeout
 
-# Check if Wordlist file exists and has readable
+# Memeriksa file Wordlist
 if not os.path.isfile(wlfile) and not os.access(wlfile, os.R_OK):
     print (r+"[*]"+w+" Wordlist file is missing or is not readable")
     sys.exit(1)
@@ -324,11 +323,11 @@ else:
    print(y+'[*] Bruteforce Mode  :'+w+' xml-rpc')
 print(b+'\n\n[*]'+w+' Connecting . . .')
 
-# Check connection with fake-login
+# Check koneksi dengan fake-login
 if connection(url,user,UA,UA,timeout,brtmd) == "OK":
    print(g+'[*]'+w+' Successfully Connected')
 
-# Reset var for "progress bar"
+# Reset var untuk "progress bar"
 count = 0
 
 threads = []
@@ -346,4 +345,5 @@ with open(wlfile) as wordlist:
 
 for a in threads:
     a.join()
+# Password tidak ditemukan
 print(r+'\n[!]'+w+' Password NOT found !')
