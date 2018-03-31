@@ -107,7 +107,7 @@ def randomAgentGen():
  UA = random.choice(userAgent)
  return UA
 
-banner = """
+jembut = """
  __      ____________         __________                __          
 /  \    /  \______   \        \______   \______ __ ___ /  |_  ____  
 \   \/\/   /|     ___/   ______ |    |  _|_  __ \  |  \   __\/ __ \ 
@@ -274,12 +274,12 @@ if options.standard and options.xml:
 
 # Check argument
 if not options.standard and not options.xml:
-    print(banner)
+    print(jembut)
     print
     commandList.print_help()
     sys.exit(1)
 elif not options.target or not options.username or not options.wordlist:
-    print(banner)
+    print(jembut)
     print
     commandList.print_help()
     sys.exit(1)
@@ -312,7 +312,7 @@ if wlsize < 100:
 else:
     totalwordlist="unknown"
 
-print(banner)
+print(jembut)
 print
 print(y+'[*] Target           : '+w+options.target)
 print(y+'[*] Username         : '+w+user)
