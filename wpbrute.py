@@ -121,9 +121,9 @@ jembut = """
 
 def urlCMS(url,brutemode):
     if url[:8] != "https://" and url[:7] != "http://":
-        print(g+'\n[*]'+w+' You must insert http:// or https:// procotol')
+        print(r+'\n[!]'+w+' You must insert http:// OR https:// ')
         os._exit(1)
-    # Login Page WordPress
+    # Masuk ke halaman login wordpress
     if brutemode == "std":
        url = url+'/wp-login.php'
     else:
@@ -161,7 +161,6 @@ def connection(url,user,password,UA,timeout,brutemode):
 
     username = user
     pwd = password
-
     http = httplib2.Http(timeout=timeout, disable_ssl_certificate_validation=True)
 
     # HTTP POST Data
@@ -195,7 +194,7 @@ def connection(url,user,password,UA,timeout,brutemode):
               print(r+'[!] HTTP error, code: '+str(response.status))
               os._exit(1)
 
-           # Menghapus semua karakter kosong & baris baru
+           # Menghapus semua karakter kosong & membuat baris baru
            xmlcontent = content.replace(" ", "").replace("\n","")
 
            if not "faultCode" in xmlcontent:
@@ -269,10 +268,10 @@ options = commandList.parse_args()
 
 # Cek mode bruteforce conflict
 if options.standard and options.xml:
-   print (y+"\n[*] Select standard [-S]"+w+"OR"+y+"xml-rpc [-X] bruteforce mode")
+   print (r+"\n[!]"+w+" Standard bruteforce mode [-s]"+w+"/"+y+" [-x] xml-rpc bruteforce mode")
    sys.exit(1)
 
-# Check argument
+# Cek argument
 if not options.standard and not options.xml:
     print(jembut)
     print
@@ -284,7 +283,7 @@ elif not options.target or not options.username or not options.wordlist:
     commandList.print_help()
     sys.exit(1)
 
-# Set bruteforce mode
+# Setel bruteforce mode
 if options.standard:
    brtmd="std"
 else:
@@ -345,5 +344,5 @@ with open(wlfile) as wordlist:
 
 for a in threads:
     a.join()
-# Password tidak ditemukan
+# Cek apabila password tidak ditemukan
 print(r+'\n[!]'+w+' Password NOT found !')
