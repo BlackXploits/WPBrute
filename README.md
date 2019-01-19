@@ -1,4 +1,4 @@
-# WordPress Bruteforce Login
+# WordPress Bruteforce Admin Login
 
 ### Install requirements
 ```
